@@ -4,9 +4,11 @@
 #include "video_global.h"
 #include <QtWidgets/QWidget>
 #include <QString>
+#include <QObject>
 
-class VIDEOSHARED_EXPORT Video
+class VIDEOSHARED_EXPORT Video : public QObject
 {
+    Q_OBJECT
 public:
     Video();
 
@@ -94,6 +96,13 @@ public:
       * @brief backward 后退
       */
      void backward();
+
+signals:
+
+     /**
+      * @brief      播放完成
+      */
+     void finished();
 };
 
 #endif // VIDEO_H

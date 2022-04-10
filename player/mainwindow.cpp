@@ -14,13 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // 设置窗口没有边框
-//    setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+    setWindowFlags(Qt::FramelessWindowHint | windowFlags());
 
     m_video = new Video;
 
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(slot_update_time()));
-
+    connect(m_video, SIGNAL(finished()), this, SLOT(slot_play_finished()));
 
 }
 
@@ -36,6 +36,10 @@ void MainWindow::on_pushButton_clicked()
 {
     m_video->video_play(true);
     m_timer->start(500);
+
+    ui->pushButton->setStyleSheet("QPushButton#pushButton { \
+                                  border-image: url(:/resource/pause.png); \
+                              }");
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -49,7 +53,7 @@ void MainWindow::on_pushButton_3_clicked()
     m_video->set_video_window((void*)ui->video_label->winId());
 
     // 指定播放的视频文件
-    m_video->set_video_file("D:\\workspace\\DMPlayer\\videoSamples\\testSample-1.avi");
+    m_video->set_video_file("D:\\workspace\\DMPlayer\\videoSamples\\ForrestGump.mp4");
 
     // 初始化播放环境
     bool ret = m_video->initialize();
@@ -82,4 +86,12 @@ void MainWindow::on_pushButton_6_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     m_video->backward();
+}
+
+void MainWindow::slot_play_finished()
+{
+    qDebug() << "play finished";
+    ui->pushButton->setStyleSheet("QPushButton#pushButton { \
+                                  border-image: url(:/resource/play.png); \
+                              }");
 }

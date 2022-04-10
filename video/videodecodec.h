@@ -130,12 +130,17 @@ private:
      */
     bool create_video_task();
 
-Q_SIGNALS:
+signals:
 
     /**
      * @brief video_status_change_signal 停止播放信号
      */
     void video_status_change_signal(videoStatu);
+
+    /**
+     * @brief       播放完成
+     */
+    void finished();
 
 private Q_SLOTS:
 

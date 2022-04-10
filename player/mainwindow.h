@@ -36,6 +36,11 @@ private slots:
 
     void on_pushButton_7_clicked();
 
+    /**
+     * @brief       播放完成槽函数
+     */
+    void slot_play_finished();
+
 private:
     Ui::MainWindow *ui;
 

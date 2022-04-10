@@ -14,6 +14,7 @@ Video::Video()
 {
 //    g_render.initialize();
     qDebug() << "initial video success!";
+    connect(&g_video_decodec, SIGNAL(finished()), this, SIGNAL(finished()));
 }
 
 void Video::set_video_window(void *window)

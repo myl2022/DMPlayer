@@ -150,6 +150,8 @@ void VideoDecodec::slot_close_task()
         m_has_task = false;
         m_video_status = VIDEO_UNPLAY;
     }
+
+    emit finished();
 }
 
 void VideoDecodec::play()
